@@ -36,6 +36,11 @@ const typeDefs = gql`
     password: String!
   }
 
+  input LoginInput {
+    email: String!
+    password: String!
+  }
+
   input UpdateUserInput {
     username: String
     email: String
@@ -86,6 +91,12 @@ const typeDefs = gql`
 
     followUser(input: FollowUserInput!): User
     unfollowUser(input: FollowUserInput!): User
+    login(input: LoginInput!): AuthPayload
+  }
+
+  type AuthPayload {
+    token: String!
+    user: User!
   }
 `;
 
