@@ -1,12 +1,20 @@
 import { Comment, Post, User } from '../../api/models/index.js';
+import bcrypt from 'bcrypt';
 
 const createMutations = {
   createUser: async (_, { input }) => {
+    const { username, email, password } = input;
+
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
     const newUser = new User({
-      username: input.username,
-      email: input.email,
-      password: input.password,
+      username,
+      email,
+      password: hashedPassword,
+      createdAt: new Date(),
     });
+
     return await newUser.save();
   },
   createPost: async (_, { input }) => {
