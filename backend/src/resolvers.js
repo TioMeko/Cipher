@@ -7,12 +7,16 @@ const resolvers = {
       return await User.findById(userId).select('-password').populate([
         { path: 'posts' },
         { path: 'comments', populate: { path: 'post' } },
+        { path: 'followers' },
+        { path: 'following' },
       ]);
     },
     getAllUsers: async () => {
       return await User.find({}).select('-password').populate([
         { path: 'posts' },
         { path: 'comments', populate: { path: 'post' } },
+        { path: 'followers' },
+        { path: 'following' },
       ]);
     },
   },
