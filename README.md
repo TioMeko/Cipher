@@ -126,3 +126,104 @@ mutation {
   }
 }
 ```
+
+### Post
+- Create Post:
+```graphql
+mutation {
+  createPost(input: {
+    userId: "user_id",
+    content: "This is a new post"
+  }) {
+    _id
+    content
+    createdAt
+    user {
+      _id
+      username
+    }
+  }
+}
+```
+
+- Update Post:
+```graphql
+mutation {
+  updatePost(postId: "post_id", input: {
+    content: "Updated post content"
+  }) {
+    _id
+    content
+    createdAt
+    user {
+      _id
+      username
+    }
+  }
+}
+```
+
+- Delete Post:
+```graphql
+mutation {
+  deletePost(postId: "post_id")
+}
+```
+
+### Comment
+- Create Comment:
+```graphql
+mutation {
+  createComment(input: {
+    userId: "user_id",
+    postId: "post_id",
+    content: "This is a comment"
+  }) {
+    _id
+    content
+    createdAt
+    user {
+      _id
+      username
+    }
+    post {
+      _id
+      content
+    }
+  }
+}
+```
+
+-Update Comment:
+```graphql
+mutation {
+  updateComment(commentId: "comment_id", input: {
+    content: "Updated comment content"
+  }) {
+    _id
+    content
+    createdAt
+    user {
+      _id
+      username
+    }
+    post {
+      _id
+      content
+    }
+  }
+}
+```
+
+- Delete Comment:
+```graphql
+mutation {
+  deleteComment(commentId: "comment_id")
+}
+```
+
+## Contributing
+Contributions are welcome! Please open an issue or submit a pull request with any improvements or bug fixes.
+
+## License
+This project is licensed under the MIT License.
