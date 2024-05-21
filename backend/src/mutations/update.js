@@ -1,4 +1,7 @@
 import { Comment, Post, User } from '../../api/models/index.js';
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
+import "dotenv/config";
 
 const updateMutations = {
   updateUser: async (_, { userId, input }) => {
@@ -40,6 +43,26 @@ const updateMutations = {
 
     return user;
   },
+  login: async (_, { input }) => {
+    const { email, password } = input;
+
+    // Find the user by email
+    const user = await User.findOne({ email });
+    if (!user) {
+      throw new Error('User not found');
+    }
+
+    // Validate the password
+    const valid = await bcrypt.compare(password, user.password);
+    if (!valid) {
+      throw new Error('Invalid password');
+    }
+
+    // Generate JWT
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+    return { token, user };
+  }
 };
 
 export default updateMutations;
