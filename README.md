@@ -194,7 +194,7 @@ mutation {
 }
 ```
 
--Update Comment:
+- Update Comment:
 ```graphql
 mutation {
   updateComment(commentId: "comment_id", input: {
