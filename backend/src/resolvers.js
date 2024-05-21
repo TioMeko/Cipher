@@ -1,5 +1,5 @@
 import { Comment, Post, User } from '../api/models/index.js';
-import { createMutations, deleteMutations } from './mutations/index.js'
+import { createMutations, deleteMutations, updateMutations } from './mutations/index.js'
 
 const resolvers = {
   Query: {
@@ -19,6 +19,7 @@ const resolvers = {
 
   Mutation: {
     ...createMutations,
+    ...updateMutations,
     ...deleteMutations
   },
 };
