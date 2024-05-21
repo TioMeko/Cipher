@@ -10,6 +10,8 @@ const typeDefs = gql`
     createdAt: Date!
     posts: [Post]
     comments: [Comment]
+    followers: [User]
+    following: [User]
   }
 
   type Post {
@@ -38,6 +40,11 @@ const typeDefs = gql`
     username: String
     email: String
     password: String
+  }
+
+  input FollowUserInput {
+    userId: ID!
+    targetUserId: ID!
   }
 
   input CreatePostInput {
@@ -76,6 +83,9 @@ const typeDefs = gql`
     createComment(input: CreateCommentInput!): Comment
     updateComment(commentId: ID!, input: UpdateCommentInput!): Comment
     deleteComment(commentId: ID!): Boolean
+
+    followUser(input: FollowUserInput!): User
+    unfollowUser(input: FollowUserInput!): User
   }
 `;
 
