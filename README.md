@@ -47,7 +47,7 @@ JWT_SECRET=your_jwt_secret_key
 npm start
 ```
 
-The server will start on http://localhost:4000 if no port is defined in the env file. 
+The server will start on http://localhost:4000 if no port is defined in the .env file. 
 
 ### GraphQL Playground
 You can interact with the GraphQL API using the Apollo Server Playground. Navigate to http://localhost:4000/graphql to access the playground.
